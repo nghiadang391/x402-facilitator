@@ -4,7 +4,7 @@
 > sub-category on talk.nervos.org. Budget asked: **$1,000** (below the $2,000
 > ceiling — clean full-amount approvals set up a follow-on better than an
 > over-ask). Single-track, testnet-only. Not an AI-tooling file; this is the
-> project deliverable. Companion working code: `x402_facilitator/`.
+> project deliverable. Companion working code: `github.com/nghiadang391/x402-facilitator`..
 
 ---
 
@@ -17,7 +17,7 @@ whose spend cap is a physical FNN channel, not an SDK counter
 **Tags:** Spark Program · CKB · Fiber (FNN) · x402 · Agent payments · Dev tooling
 
 **GitHub (identity-verified account, required since 2026-07-28):**
-`github.com/<applicant>/x402_facilitator` — public `verification/` directory
+`github.com/nghiadang391/x402-facilitator` — public `verification/` directory
 to be added with on-chain/testnet evidence.
 
 ---
@@ -115,7 +115,7 @@ Deliverable is a maintained SDK + one live metered demo + evidence. We do
 
 ## 6. Technical Approach
 
-- **Where:** new repo `x402_facilitator/`. `src/` = FNN JSON-RPC transport
+- **Where:** new repo `x402-facilitator/`. `src/` = FNN JSON-RPC transport
   (`fnnClient.ts`), scheme handlers (`scheme.ts`), `upto` capability math
   (`capability.ts`), bare facilitator HTTP surface (`server.ts`), public
   exports (`index.ts` = the npm package boundary).
