@@ -1,0 +1,32 @@
+{
+  "name": "x402-fiber",
+  "version": "0.0.1",
+  "description": "x402-fiber — x402 facilitator + @x402-fiber SDK settling over CKB/Fiber (FNN). exact + metered 'upto' schemes. Application-layer; no PRs into nervosnetwork/fiber. Distinct from the dormant David-Pjs/fiber402 PoC.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc --noEmit",
+    "test": "jest",
+    "test:unit": "jest --testPathIgnorePatterns=/e2e/"
+  },
+  "dependencies": {
+    "@ckb-ccc/core": "^1.23.0",
+    "@ckb-ccc/udt": "^0.2.15",
+    "@hono/node-server": "^2.1.5",
+    "@x402/axios": "^2.29.0",
+    "@x402/core": "^2.29.0",
+    "hono": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.0",
+    "@types/node": "^20.0.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.0",
+    "tsx": "^4.16.0",
+    "typescript": "^5.5.0"
+  }
+}

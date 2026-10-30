@@ -1,0 +1,25 @@
+# deps / build
+node_modules/
+dist/
+*.tsbuildinfo
+
+# env + secrets — never commit
+.env
+.env.local
+*.key
+*.pem
+
+# AI tooling / agent context — local only (Rule 4), never commit
+AGENTS.md
+CLAUDE.md
+.agents/
+implementation_plan.md
+task.md
+skills-lock.json
+generate_deck.sh
+
+# test artifacts / scratch
+test-results/
+playwright-report/
+coverage/
+*.db

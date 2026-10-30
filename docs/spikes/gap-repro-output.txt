@@ -1,0 +1,27 @@
+=== fiber402 gap reproduction ===
+
+[MOCK] newInvoice  -> {
+  invoiceAddress: 'fbr_mock_7e137c29749f2775ebc62245d9adfe181c74a5d8ef4f611e7270304dec9534e3c7d988f3caa4ed7b436de1d31530438afab629672490058bf355298874c7a8da',
+  paymentHash: '0x7e137c29749f2775ebc62245d9adfe181c74a5d8ef4f611e7270304dec9534e3c7d988f3caa4ed7b436de1d31530438afab629672490058bf355298874c7a8da',
+  amountShannons: '10000'
+}
+[MOCK] sendPayment -> {
+  payment_hash: '0x7e137c29749f2775ebc62245d9adfe181c74a5d8ef4f611e7270304dec9534e3',
+  status: 'Success',
+  preimage: '0x84641e4abfac245b4f42f437098c30afbc3e19fb898fca95594936b41bbada8ccc87767bbeb588659b91f9f09e7c0f07d5d83fb1b85265ad105b934604e79af2',
+  fee: '0x0'
+}
+     payment_hash is fabricated locally (no node, no preimage channel).
+     This is the 'mocked payment' the gap map calls out.
+
+[LIVE] newInvoice -> invoice_address: fibt100001pcv7vx0fwe2gfw0pmm6vhrnt0wdgc3h3049dw09j54wdgq573w0weuavvv34emghd6yqzec2c7sjgrffj27a728nsa9244ls4e3matjlqmacyk437egrx434pfsdpqp7kdn5z6n79z3950gz0gfv2dsy7yfeskg4yx079n5q6w48xsjg6zxp7jlwhaq76hpcm4mj34f9wc2s9qdu49atdue4lrr0mzzdgqr5xyzp9xprpr48yzgtqm2pu73a4upqe8v2stqp59vun5nf6yhcygsafvvdkzhkgr9ap66yfc8e36783n3ttsdrfw650vl5wqdl0a25ejgdtdfsrw2v0dvq684d8jcqp8q5lnl
+[LIVE]            -> payment_hash:    0xbb84fb8dac9b0676e5139e0870835959b5439fa227d2c34f367a433a9fc1c963
+     Node-issued invoice: the payment_hash is signed by FNN.
+     Next leg (send_payment) is the settlement the demo lacks:
+[LIVE] sendPayment -> transport error (documented):
+      FNN transport error on send_payment: fetch failed
+     FnnClient reports this structurally; the gap stands: the live
+     invoice above is node-issued vs. the fabricated mock receipt.
+
+GAP: public fiber402 settles with fabricated hashes; FNN receipts are
+node-issued and carry preimage + custom_records (the basis for upto).

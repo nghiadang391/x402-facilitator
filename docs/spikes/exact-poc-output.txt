@@ -1,0 +1,47 @@
+=== fiber402 exact-scheme PoC ===
+
+[1] provider 402 PaymentRequired:
+ {
+  "scheme": "exact",
+  "network": "fiber:ckb-testnet",
+  "asset": "Fibt",
+  "amount": "10000",
+  "payTo": "024714ca19abea4ddc0f3863ffdfb2e2cee76af87c477de4bc67c74a83f8140042",
+  "maxTimeoutSeconds": 300,
+  "extra": {}
+} 
+
+[2] agent PaymentPayload:
+ {
+  "x402Version": 2,
+  "accepted": {
+    "scheme": "exact",
+    "network": "fiber:ckb-testnet",
+    "asset": "Fibt",
+    "amount": "10000",
+    "payTo": "024714ca19abea4ddc0f3863ffdfb2e2cee76af87c477de4bc67c74a83f8140042",
+    "maxTimeoutSeconds": 300,
+    "extra": {}
+  },
+  "payload": {
+    "payerPubkey": "024714ca19abea4ddc0f3863ffdfb2e2cee76af87c477de4bc67c74a83f8140042",
+    "keysend": true
+  }
+} 
+
+[3] facilitator.verify -> {"isValid":true}
+
+[4] facilitator.settle -> (live FNN new_invoice + send_payment)
+{
+  "success": false,
+  "errorReason": "fnn_transport_unavailable",
+  "errorMessage": "FNN transport error on send_payment: fetch failed",
+  "transaction": "",
+  "network": "fiber:ckb-testnet"
+} 
+
+SETTLEMENT BLOCKED BY ENVIRONMENT: this FNN v0.9.1 node drops the
+send_payment connection (recorded in docs/spikes/w1-reality-check.md §B).
+The exact-scheme plumbing itself ran end-to-end:
+  verify ok -> invoice mint attempt -> structured transport error
+  (fnn_transport_unavailable), no unhandled exception.
